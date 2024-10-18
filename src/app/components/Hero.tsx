@@ -26,7 +26,7 @@ const Hero = () => {
         </div>
 
         {/* Email Capture */}
-        <div className="bg-gray-800 p-6 rounded-lg mx-auto md:mx-0 w-full md:w-auto">
+        {/* <div className="bg-gray-800 p-6 rounded-lg mx-auto md:mx-0 w-full md:w-auto">
           <p className="text-lg font-semibold mb-4 text-center">
             Sign up for our newsletter to stay updated!
           </p>
@@ -43,7 +43,7 @@ const Hero = () => {
               Subscribe
             </button>
           </form>
-        </div>
+        </div> */}
       </div>
 
       {/* Right Icon/Graphic Section */}

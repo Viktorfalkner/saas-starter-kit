@@ -5,6 +5,19 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/app/utils/supabase/server'
 
+export async function logout() {
+  console.log("Attempting to log out user");
+
+  const supabase = createClient()
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.log("Error Logging User out", error);
+  } else {
+    console.log("User Logged out");
+  }
+};
+
 export async function login(formData: FormData) {
     console.log("LOGGIN IN")
 
@@ -12,16 +25,20 @@ export async function login(formData: FormData) {
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
-  const data = {
+  const enteredData = {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const { error, data } = await supabase.auth.signInWithPassword(enteredData)
 
   if (error) {
+    console.log("Error Logging In", error)
     redirect('/error')
   }
+
+  console.log("data from sign in:", data)
+
 
   revalidatePath('/', 'layout')
   redirect('/')
@@ -39,11 +56,13 @@ export async function signup(formData: FormData) {
     password: formData.get('password') as string,
   }
 
-  console.log("SIGNING UP")
+  console.log("SIGNING UP DATA", data)
 
   const { error } = await supabase.auth.signUp(data)
 
   if (error) {
+    console.log("SIGNING UP ERROR", error)
+
     redirect('/error')
   }
 

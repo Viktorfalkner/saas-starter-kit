@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import config from "../../../config";
 import logo from "@/app/icon.png";
+import LoginButton from "./LoginButton";
 
 interface HeaderLink {
   src: string;
@@ -55,13 +56,7 @@ function Header() {
         </div>
 
         {/* Login Button */}
-        <div className="flex justify-end lg:flex-1">
-          <Link href="/login">
-            <button className="py-2 px-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-md transition-colors">
-              Login
-            </button>
-          </Link>
-        </div>
+        <LoginButton />
       </nav>
     </header>
   );
