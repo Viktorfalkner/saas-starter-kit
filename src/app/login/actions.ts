@@ -5,18 +5,6 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/app/utils/supabase/server'
 
-export async function logout() {
-  console.log("Attempting to log out user");
-
-  const supabase = createClient()
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    console.log("Error Logging User out", error);
-  } else {
-    console.log("User Logged out");
-  }
-};
 
 export async function login(formData: FormData) {
     console.log("LOGGIN IN")

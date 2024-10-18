@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { createClient } from "../utils/supabase/client";
 
@@ -20,17 +20,14 @@ function LoginButton() {
     }
   };
 
-  useLayoutEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_, session) => {
-      setUser(session?.user || null); // Update user state based on session
-    });
-
-    return () => {
-      subscription?.unsubscribe(); // Clean up the subscription on unmount
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      setUser(data.user);
     };
-  }, [supabase]); // Only depend on supabase
+
+    getUser();
+  }, [supabase, user]);
 
   return (
     //  {/* Login Button */}
