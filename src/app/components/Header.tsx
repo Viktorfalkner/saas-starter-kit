@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import config from "../../../config";
 import logo from "@/app/icon.png";
 import LoginButton from "./LoginButton";
+import config from "../../../config";
 
 interface HeaderLink {
   src: string;

@@ -21,13 +21,16 @@ function LoginButton() {
   };
 
   useEffect(() => {
+    console.log("Im getting User data in the login button");
+
     const getUser = async () => {
       const { data } = await supabase.auth.getUser();
       setUser(data.user);
+      console.log("Im getting User data in the login button", data.user);
     };
 
     getUser();
-  }, [supabase, user]);
+  }, [supabase]);
 
   return (
     //  {/* Login Button */}
